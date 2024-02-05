@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+    About Us
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: black; 
+            color: white; 
+            font-family: 'Arial', sans-serif; 
+        }
+
+        .about-container {
+            padding: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.3em; 
+            margin-bottom: 20px;
+            margin-top: 39px;
+        }
+
+        p {
+            font-size: 1.1em; 
+            line-height: 1.6; 
+        }
+
+        .more-info {
+            margin-top: 40px;
+        }
+    </style>
+
+    <div class="about-container">
+        <h1>C & E</h1>
+        <p>C & E is a dedicated movie hub, providing you with a vast collection of movies from various genres and eras. Our goal is to offer an immersive cinematic experience to our audience, catering to diverse preferences and tastes. 
+            With a carefully curated selection of films, detailed information, and a user-friendly interface, C & E aims to be your go-to destination for discovering, exploring, and enjoying the world of cinema.</p>
+        
+        <div class="more-info">
+            <h3>Mission</h3>
+            <p>At C & E, our mission is to create an inclusive platform that celebrates the art of storytelling through movies. We strive to connect movie enthusiasts worldwide, fostering a community that appreciates the richness and diversity of cinematic experiences.</p><br>
+            <h3>Vision</h3>
+            <p>Our vision is to become a leading online resource for movie lovers, continuously evolving to meet the evolving needs and desires of our audience. We aim to cultivate a space where passion for movies transcends boundaries, engaging and inspiring film aficionados everywhere.</p>
+        </div>
+    </div>
+{% endblock %}

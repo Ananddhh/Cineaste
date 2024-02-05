@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Favorite Movies
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: black;
+        }
+        h1{
+            color: white;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li.ad {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #272727;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        li.ad:nth-child(even) {
+            background-color: #333333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #caa5df;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #ffcc00;
+        }
+    </style>
+
+    <h1>Favorite Movies</h1>
+    <br>
+    <ul>
+        {% for title in unique_movie_titles %}
+            <li class = "ad"><a href="{% url 'movie_detail_by_title' title|urlencode %}">{{ title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

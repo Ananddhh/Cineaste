@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    All Movies
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: black; 
+            color: white; 
+        }
+
+        .card {
+            background-color: #151414; 
+            color: white; 
+            margin-bottom: 20px;
+        }
+
+        .card img {
+            object-fit: cover;
+            height: 700px; 
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title a { 
+            color: white;
+            text-decoration: none;
+        }
+
+        .card-title a:hover {
+            color: white; 
+            text-decoration: none;
+        }
+
+        .card-text {
+            font-size: 16px; 
+        }
+
+        .btn-primary {
+            background-color: #272927; 
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #caa5df; 
+        }
+        .favorite-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 0;
+            cursor: pointer;
+            outline: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition: color 0.1s; 
+        }
+
+        .favorite-btn.favorited {
+            color: #ececec; 
+        }
+
+        .card-body {
+            position: relative;
+        }
+    </style>
+     <div class="row">
+        {% for movie in movies %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ movie.poster.url }}" alt="{{ movie.title }} Poster" class="card-img-top">
+
+                        <div class="card-body">
+                        <h5 class="card-title">{{ movie.title }}</h5>
+                        <p class="card-text">{{ movie.plot|truncatewords:20 }}</p>
+                        <p class="card-text"><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                        <p class="card-text"><strong>Genres:</strong>
+                            {% for genre in movie.genres.all %}
+                                {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                        <form action="{% url 'add_to_favorites' movie.id %}" method="post">
+                            {% csrf_token %}
+                            {% if movie.is_favorite %}
+                                <button class="favorite-btn favorited" type="submit">&#10084;</button>
+                            {% else %}
+                                <button class="favorite-btn" type="submit">&#10084;</button>
+                            {% endif %}
+                        </form>
+                        <a href="{% url 'movie_detail' movie.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    
+    {% endblock %}    

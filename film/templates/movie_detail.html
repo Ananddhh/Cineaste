@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ movie.title }}
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px; 
+        }
+        div {
+            max-width: 600px; 
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 28px; 
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px; 
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+       
+        .genres {
+            font-style: italic; 
+        }
+    </style>
+
+    <div>
+        <img src="{{ movie.poster.url }}" alt="{{ movie.title }} Poster" class="card-img-top">
+        <h1>{{ movie.title }}</h1>
+        <p>Release Date: {{ movie.release_date }}</p>
+        <p>{{ movie.plot }}</p>
+        <p class="genres">Genres:
+            {% for genre in movie.genres.all %}
+                {{ genre.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+{% endblock %}

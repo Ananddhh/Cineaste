@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="image-container">
+                    <img src="{% static 'img/b.jpg' %}" class="img-fluid" alt="Wallpaper">
+                    <div class="centered-text">
+                        <h1>C & <span>E</span></h1>
+                        <!-- <p style = "color: rgb(0, 0, 0);">it's all about F I L M S</p> -->
+                        <a href="{% url 'movie_list' %}" style = "color: rgb(0, 0, 0); text-decoration: none;" >CineastE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            background-color: black;
+        }
+        h1 {
+            color: rgb(255, 255, 255);
+            font-size: 45px;
+
+        }
+        a {
+            font-size: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            height: 88vh;
+            width: 158vh;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .centered-text {
+            position: absolute;
+            top: 44%;
+            left: 56%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-container:hover .centered-text {
+            opacity: 1;
+        }
+    </style>
+{% endblock %}

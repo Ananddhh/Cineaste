@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        p {
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        p a {
+            color: white;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            color: #caa5df;
+        }
+
+        p:hover {
+            transform: scale(1.05);
+        }
+
+        p:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
+    <h1>Search Results for "{{ query }}"</h1>
+    {% if search_results %}
+        <ul>
+            {% for movie in search_results %}
+                <p><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock %}
